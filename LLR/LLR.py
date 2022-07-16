@@ -1,3 +1,6 @@
+import numpy as np
+from sklearn.neighbors import KDTree
+
 def LLR(x1, x1_train, y1_train, nn, weight):
     '''
     Local linear regression with inverse distance weight and nn number of nearest neighbors.

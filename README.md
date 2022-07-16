@@ -3,7 +3,7 @@ This is a package for local linear regression. I have explained what is LLR and 
 
 # Installation
 ```
-git clone https://github.com/AlanPearl/pypackbasics
+git clone https://github.com/ashod1/LLR-package
 cd pypackbasics
 pip install .
 ```

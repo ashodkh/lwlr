@@ -11,4 +11,3 @@ pip install .
 - Python >= 3.6
 - sklearn
 - numpy
-

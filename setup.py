@@ -5,7 +5,7 @@ setup(
     name="LLR",
     version="1.0",
     description="Local linear regression package",
-    url="https://github.com/AlanPearl/pypackbasics",
+    url="https://github.com/ashod1/LLR-package",
     author="Ashod Khederlarian",
     author_email="ask126@pitt.edu",
     license="MIT",

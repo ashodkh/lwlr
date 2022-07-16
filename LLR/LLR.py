@@ -72,6 +72,6 @@ def LLR(x1, x1_train, y1_train, nn, weight):
         a1[ii,:,:]=np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],Y[ii,:,:]))
         a2[ii,:,:]=np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],X[ii,:,:]))
         theta[ii,:,:]=np.matmul(np.linalg.inv(a2[ii,:,:]),a1[ii,:,:])
-        y_fit[ii]=np.matmul(theta[ii,:,:].transpose(),x_valid[ii,:])
+        y_fit[ii]=np.matmul(theta[ii,:,:].transpose(),x1[ii,:])
         
     return y_fit, zeros

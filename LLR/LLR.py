@@ -53,12 +53,12 @@ def LLR(x1, x1_train, y1_train, nn, weight):
             W[:,j,j]=1
             X[:,j,:]=x1_train[ind[:,j],:]
             Y[:,j,0]=y1_train[ind[:,j]]
-    else if weight=='inverse_distance':
+    elif weight=='inverse_distance':
         for j in range(nl):
             W[:,j,j]=1/dist[:,j]
             X[:,j,:]=x1_train[ind[:,j],:]
             Y[:,j,0]=y1_train[ind[:,j]]
-    else if weight=='inverse_distance_squared':
+    elif weight=='inverse_distance_squared':
         for j in range(nl):
             W[:,j,j]=1/dist[:,j]**2
             X[:,j,:]=x1_train[ind[:,j],:]

@@ -9,7 +9,7 @@ setup(
     author="Ashod Khederlarian",
     author_email="ask126@pitt.edu",
     license="MIT",
-    python_requires=">=3.6"
+    python_requires=">=3.6",
     install_requires=[
         "sklearn",
         "numpy",

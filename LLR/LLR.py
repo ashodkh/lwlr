@@ -75,3 +75,4 @@ def LLR(x1, x1_train, y1_train, nn, weight):
         y_fit[ii] = np.matmul(theta[ii,:,:].transpose(),x1[ii,:])
         
     return y_fit, zeros
+

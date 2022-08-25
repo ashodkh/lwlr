@@ -43,36 +43,69 @@ def LLR(x1, x1_train, y1_train, nn, weight):
     n_valid = x1.shape[0]
 
     # Fitting the coefficients based on the analytical solution
-    
-    theta = np.zeros([n_valid,x1.shape[1],1])
-    W = np.zeros([n_valid,nl,nl])
-    X = np.zeros([n_valid,nl,x1.shape[1]])
-    Y = np.zeros([n_valid,nl,1])
-    if weight == 'constant':
-        for j in range(nl):
-            W[:,j,j] = 1
-            X[:,j,:] = x1_train[ind[:,j],:]
-            Y[:,j,0] = y1_train[ind[:,j]]
-    elif weight == 'inverse_distance':
-        for j in range(nl):
-            W[:,j,j] = 1/dist[:,j]
-            X[:,j,:] = x1_train[ind[:,j],:]
-            Y[:,j,0] = y1_train[ind[:,j]]
-    elif weight == 'inverse_distance_squared':
-        for j in range(nl):
-            W[:,j,j] = 1/dist[:,j]**2
-            X[:,j,:] = x1_train[ind[:,j],:]
-            Y[:,j,0] = y1_train[ind[:,j]]
-    else:
-        raise ValueError("Weight does not match one of the three options")
-    a1 = np.zeros([n_valid,x1.shape[1],1])
-    a2 = np.zeros([n_valid,x1.shape[1],x1.shape[1]])
+
+    theta = np.zeros([x1.shape[1],1])
+    W = np.zeros([nl,nl])
+    X = np.zeros([nl,x1.shape[1]])
+    Y = np.zeros([nl,1])
     y_fit = np.zeros(n_valid)
-    for ii in range(n_valid):
-        a1[ii,:,:] = np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],Y[ii,:,:]))
-        a2[ii,:,:] = np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],X[ii,:,:]))
-        theta[ii,:,:] = np.matmul(np.linalg.inv(a2[ii,:,:]),a1[ii,:,:])
-        y_fit[ii] = np.matmul(theta[ii,:,:].transpose(),x1[ii,:])
+    for i in range(n_valid):
+        if weight == 'constant':
+            for j in range(nl):
+                W[j,j] = 1
+                X[j,:] = x1_train[ind[i,j],:]
+                Y[j,0] = y1_train[ind[i,j]]
+        elif weight == 'inverse_distance':
+            for j in range(nl):
+                W[j,j] = 1/dist[i,j]
+                X[j,:] = x1_train[ind[i,j],:]
+                Y[j,0] = y1_train[ind[i,j]]
+        elif weight == 'inverse_distance_squared':
+            for j in range(nl):
+                W[j,j] = 1/dist[i,j]**2
+                X[j,:] = x1_train[ind[i,j],:]
+                Y[j,0] = y1_train[ind[i,j]]
+        else:
+            raise ValueError("Weight does not match one of the three options")
+        a1 = np.zeros([x1.shape[1],1])
+        a2 = np.zeros([x1.shape[1],x1.shape[1]])
+
+        a1[i,:,:] = np.matmul(X[i,:,:].transpose(),np.matmul(W[i,:,:],Y[i,:,:]))
+        a2[i,:,:] = np.matmul(X[i,:,:].transpose(),np.matmul(W[i,:,:],X[i,:,:]))
+        theta[i,:,:] = np.matmul(np.linalg.inv(a2[i,:,:]),a1[i,:,:])
+        y_fit[i] = np.matmul(theta[i,:,:].transpose(),x1[i,:])
         
     return y_fit, zeros
+
+#     theta = np.zeros([n_valid,x1.shape[1],1])
+#     W = np.zeros([n_valid,nl,nl])
+#     X = np.zeros([n_valid,nl,x1.shape[1]])
+#     Y = np.zeros([n_valid,nl,1])
+#     if weight == 'constant':
+#         for j in range(nl):
+#             W[:,j,j] = 1
+#             X[:,j,:] = x1_train[ind[:,j],:]
+#             Y[:,j,0] = y1_train[ind[:,j]]
+#     elif weight == 'inverse_distance':
+#         for j in range(nl):
+#             W[:,j,j] = 1/dist[:,j]
+#             X[:,j,:] = x1_train[ind[:,j],:]
+#             Y[:,j,0] = y1_train[ind[:,j]]
+#     elif weight == 'inverse_distance_squared':
+#         for j in range(nl):
+#             W[:,j,j] = 1/dist[:,j]**2
+#             X[:,j,:] = x1_train[ind[:,j],:]
+#             Y[:,j,0] = y1_train[ind[:,j]]
+#     else:
+#         raise ValueError("Weight does not match one of the three options")
+#     a1 = np.zeros([n_valid,x1.shape[1],1])
+#     a2 = np.zeros([n_valid,x1.shape[1],x1.shape[1]])
+#     y_fit = np.zeros(n_valid)
+#     for ii in range(n_valid):
+#         a1[ii,:,:] = np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],Y[ii,:,:]))
+#         a2[ii,:,:] = np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],X[ii,:,:]))
+#         theta[ii,:,:] = np.matmul(np.linalg.inv(a2[ii,:,:]),a1[ii,:,:])
+#         y_fit[ii] = np.matmul(theta[ii,:,:].transpose(),x1[ii,:])
+        
+#     return y_fit, zeros
 

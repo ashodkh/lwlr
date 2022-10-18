@@ -29,6 +29,11 @@ def LLR(x1, x1_train, y1_train, nn, weight):
     
     '''
     
+    ones = np.ones([x1.shape[0],1])
+    x1 = np.concatenate((ones,x1), axis=1)
+    ones = np.ones([x1_train.shape[0],1])
+    x1_train = np.concatenate((ones,x1_train), axis=1)
+    
     nl = nn
     tree = KDTree(x1_train[:,:])
     dist, ind = tree.query(x1[:,:], k=nl)

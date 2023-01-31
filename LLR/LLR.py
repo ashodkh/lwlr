@@ -78,7 +78,7 @@ def LLR(x1, x1_train, y1_train, nn, weight, extra_weights = None):
     for ii in range(n_valid):
         a1[ii,:,:] = np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],Y[ii,:,:]))
         a2[ii,:,:] = np.matmul(X[ii,:,:].transpose(),np.matmul(W[ii,:,:],X[ii,:,:]))
-        theta[ii,:,:] = np.matmul(np.linalg.inv(a2[ii,:,:]),a1[ii,:,:])
+        theta[ii,:,:] = np.matmul(np.linalg.pinv(a2[ii,:,:]),a1[ii,:,:])
         y_fit[ii] = np.matmul(theta[ii,:,:].transpose(),x1[ii,:])
         
     return y_fit, zeros
@@ -160,7 +160,7 @@ def LLR_slow(x1, x1_train, y1_train, nn, weight, extra_weights = None):
 
         a1[:,:] = np.matmul(X[:,:].transpose(),np.matmul(W[:,:],Y[:,:]))
         a2[:,:] = np.matmul(X[:,:].transpose(),np.matmul(W[:,:],X[:,:]))
-        theta[:,:] = np.matmul(np.linalg.inv(a2[:,:]),a1[:,:])
+        theta[:,:] = np.matmul(np.linalg.pinv(a2[:,:]),a1[:,:])
         y_fit[i] = np.matmul(theta[:,:].transpose(),x1[i,:])
         
     return y_fit, zeros

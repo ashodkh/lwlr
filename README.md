@@ -5,6 +5,10 @@ This is a package for local linear regression. The usage_example notebook illust
 ```
 pip install lwlr
 ```
+# Importing
+```
+from lwlr import LWLR
+```
 **Dependencies**
 - Python >= 3.6
 - sklearn

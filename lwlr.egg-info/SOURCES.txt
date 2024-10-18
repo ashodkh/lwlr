@@ -2,8 +2,8 @@ LICENSE
 README.md
 pyproject.toml
 setup.py
-lwlr/LLR.py
 lwlr/__init__.py
+lwlr/lwlr.py
 lwlr.egg-info/PKG-INFO
 lwlr.egg-info/SOURCES.txt
 lwlr.egg-info/dependency_links.txt

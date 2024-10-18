@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.neighbors import KDTree
 
+
 class lwlr:
     def __init__(self, weight_type='inverse_distance'):
         weight_funcs = {

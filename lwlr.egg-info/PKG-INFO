@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: lwlr
+Version: 1.0
+Summary: Local weighted linear regression package
+Home-page: https://github.com/ashod1/lwlr
+Author: Ashod Khederlarian
+Author-email: ask126@pitt.edu
+License: MIT
+Requires-Python: >=3.6
+License-File: LICENSE

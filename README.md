@@ -1,5 +1,5 @@
-# Local Linear Regression (LLR)
-This is a package for local linear regression. I have explained what is LLR and how to implement it at https://github.com/ashod1/Machine-Learning-Methods/blob/main/document.pdf.
+# Local Weighted Linear Regression (lwlr)
+This is a package for local linear regression. The usage_example notebook illustrates how to use it.
 
 # Installation
 ```

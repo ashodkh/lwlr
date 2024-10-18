@@ -3,9 +3,7 @@ This is a package for local linear regression. The usage_example notebook illust
 
 # Installation
 ```
-git clone https://github.com/ashod1/LLR-package
-cd pypackbasics
-pip install .
+pip install lwlr
 ```
 **Dependencies**
 - Python >= 3.6

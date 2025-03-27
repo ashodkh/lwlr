@@ -23,8 +23,7 @@ class LWLR:
 
         # Find nearest neighbors using KDTree (excluding self-match at index 0)
         tree = KDTree(x_train)
-        dist, ind = tree.query(x, k=nn + 1)  # Get k + 1 neighbors (including self)
-        dist, ind = dist[:, 1:], ind[:, 1:]  # Exclude self-match
+        dist, ind = tree.query(x, k=nn)  # Get k nearest neighbors for each query point
 
         # Handle extra weights (if provided)
         extra_weights = np.ones(x_train.shape[0]) if extra_weights is None else extra_weights
